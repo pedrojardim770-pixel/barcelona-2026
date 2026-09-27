@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Barcelona 2026 | Roteiro Personalizado</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+:root{--red:#a52a45;--dark:#18222d;--grey:#687681;--light:#f4f7f8;--white:#fff}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--light);color:var(--dark)}
+header{background:linear-gradient(135deg,#75172f,#c94b64);color:#fff;padding:25px 18px;text-align:center}
+header h1{margin:0;font-size:29px}header p{margin:7px 0 0;opacity:.9}
+.days{display:flex;gap:8px;overflow-x:auto;background:#fff;padding:11px;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px #0002}
+.days button{border:0;background:#edf1f3;padding:10px 15px;border-radius:22px;white-space:nowrap;font-weight:800;cursor:pointer}
+.days button.active{background:var(--red);color:#fff}
+.layout{display:grid;grid-template-columns:410px 1fr}.sidebar{background:#fff;padding:18px;height:calc(100vh - 108px);overflow-y:auto}
+#map{height:calc(100vh - 108px);min-height:520px}
+h2{margin:0 0 4px}h3{margin:7px 0}.sub{color:var(--grey);line-height:1.5}
+.hotel{background:#263238;color:#fff;padding:14px;border-radius:15px;margin:14px 0}.hotel strong{display:block;font-size:16px}
+.point{border:1px solid #e2e7ea;border-radius:15px;padding:13px;margin:10px 0;background:#fff;cursor:pointer}
+.point:hover{box-shadow:0 6px 18px #0001}.head{display:flex;align-items:center;gap:10px}.num{width:37px;height:37px;min-width:37px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900}
+.name{font-weight:850}.desc{margin-top:8px;font-size:13px;line-height:1.5;color:#4f5b62}
+.navigate{display:inline-block;margin-top:9px;background:#263238;color:#fff;padding:8px 11px;border-radius:8px;text-decoration:none;font-size:12px;font-weight:750}
+.custom-marker{width:39px;height:39px;border-radius:50%;border:3px solid #fff;background:var(--red);box-shadow:0 2px 7px #0007;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900}
+.note{background:#fff7df;border-left:4px solid #d7a62d;padding:10px;border-radius:8px;margin:12px 0;font-size:13px;line-height:1.45}
+@media(max-width:850px){.layout{display:flex;flex-direction:column}#map{order:1;height:55vh;min-height:400px}.sidebar{order:2;height:auto;overflow:visible}header h1{font-size:24px}}
+</style>
+</head>
+<body>
+<header><h1>🇪🇸 Barcelona</h1><p>Roteiro personalizado · 19 a 23 Outubro 2026</p></header>
+<nav class="days" id="days"></nav>
+<div class="layout"><aside class="sidebar"><div id="content"></div></aside><main id="map"></main></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const hotel={name:"ibis Barcelona Santa Coloma",lat:41.455661,lng:2.204926};
+const days=[
+{id:1,date:"19 Out",title:"✈️ Chegada a Barcelona",description:"Chegada prevista por volta das 21:00. Deslocação para Santa Coloma de Gramenet, check-in e jantar.",points:[
+{n:1,name:"Aeroporto Barcelona–El Prat",lat:41.2974,lng:2.0833,d:"Chegada a Barcelona e início da deslocação para o hotel."},
+{n:2,name:"ibis Barcelona Santa Coloma",lat:41.455661,lng:2.204926,d:"Hotel e base da viagem."}]},
+{id:2,date:"20 Out",title:"🏛️ Gaudí + Sagrada Família",description:"Dia organizado por proximidade, começando em Gràcia e terminando na Sagrada Família.",points:[
+{n:3,name:"Park Güell",lat:41.4145,lng:2.1527,d:"Parque de Gaudí e um dos locais mais emblemáticos de Barcelona."},
+{n:4,name:"Casa Vicens",lat:41.4035,lng:2.1506,d:"Uma das primeiras grandes obras de Antoni Gaudí."},
+{n:5,name:"Sagrada Família",lat:41.4036,lng:2.1744,d:"Basílica emblemática de Barcelona."}]},
+{id:3,date:"21 Out",title:"🏙️ Centro histórico + Barceloneta",description:"Percurso desde Arc de Triomf, passando pelo Born e Bairro Gótico, até ao mar.",points:[
+{n:6,name:"Arc de Triomf",lat:41.3911,lng:2.1806,d:"Início do percurso pelo centro histórico."},
+{n:7,name:"Parc de la Ciutadella",lat:41.3881,lng:2.1860,d:"Grande parque urbano junto ao Born."},
+{n:8,name:"Moco Museum Barcelona",lat:41.3852,lng:2.1809,d:"Museu de arte moderna e contemporânea."},
+{n:9,name:"Bairro Gótico",lat:41.3837,lng:2.1761,d:"Ruas históricas e praças do centro antigo."},
+{n:10,name:"Catedral de Barcelona",lat:41.3839,lng:2.1762,d:"Catedral no coração do Bairro Gótico."},
+{n:11,name:"Mercat de la Boqueria",lat:41.3817,lng:2.1716,d:"Mercado histórico junto às Ramblas."},
+{n:12,name:"Praia de Barceloneta",lat:41.3784,lng:2.1925,d:"Final do percurso junto ao mar."}]},
+{id:4,date:"22 Out",title:"🏠 Modernismo + Montjuïc",description:"Passeig de Gràcia pela manhã e Montjuïc para terminar o dia.",points:[
+{n:13,name:"La Pedrera · Casa Milà",lat:41.3954,lng:2.1619,d:"Obra modernista de Gaudí no Passeig de Gràcia."},
+{n:14,name:"Casa Batlló",lat:41.3917,lng:2.1649,d:"Uma das obras mais reconhecíveis de Gaudí."},
+{n:15,name:"Montjuïc",lat:41.3636,lng:2.1585,d:"Zona elevada com jardins, miradouros e equipamentos culturais."}]},
+{id:5,date:"23 Out",title:"✈️ Regresso",description:"Voo às 12:00. Manhã reservada à saída do hotel e deslocação para o aeroporto.",points:[
+{n:16,name:"ibis Barcelona Santa Coloma",lat:41.455661,lng:2.204926,d:"Saída do hotel com antecedência."},
+{n:17,name:"Aeroporto Barcelona–El Prat",lat:41.2974,lng:2.0833,d:"Destino final do roteiro."}]}
+];
+const map=L.map("map").setView([41.39,2.17],12);
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"&copy; OpenStreetMap contributors"}).addTo(map);
+let active=1,markers=[],route=null;
+function directions(p){return "https://www.google.com/maps/dir/?api=1&destination="+p.lat+","+p.lng}
+function clearMap(){markers.forEach(m=>map.removeLayer(m));markers=[];if(route){map.removeLayer(route);route=null}}
+function icon(n){return L.divIcon({className:"",html:`<div class="custom-marker">${n}</div>`,iconSize:[39,39],iconAnchor:[19,19]})}
+function renderDays(){const e=document.getElementById("days");e.innerHTML="";days.forEach(d=>{const b=document.createElement("button");b.textContent=d.date;b.className=d.id===active?"active":"";b.onclick=()=>{active=d.id;renderDays();renderDay()};e.appendChild(b)})}
+function renderDay(){
+ const d=days.find(x=>x.id===active);clearMap();
+ let html=`<h2>${d.date}</h2><h3>${d.title}</h3><p class="sub">${d.description}</p>`;
+ if(active>1&&active<5)html+=`<div class="hotel"><strong>🏨 ${hotel.name}</strong><small>Base da viagem</small></div>`;
+ const coords=[];
+ d.points.forEach(p=>{
+   const m=L.marker([p.lat,p.lng],{icon:icon(p.n)}).addTo(map);
+   m.bindPopup(`<strong>${p.n}. ${p.name}</strong><p>${p.d}</p><a target="_blank" href="${directions(p)}">📍 Direções</a>`);
+   markers.push(m);coords.push([p.lat,p.lng]);
+   html+=`<div class="point" data-n="${p.n}"><div class="head"><span class="num">${p.n}</span><span class="name">${p.name}</span></div><div class="desc">${p.d}</div><a class="navigate" target="_blank" onclick="event.stopPropagation()" href="${directions(p)}">📍 Direções</a></div>`;
+ });
+ if(coords.length>1){route=L.polyline(coords,{weight:4,opacity:.65,dashArray:"8 8"}).addTo(map);map.fitBounds(L.latLngBounds(coords),{padding:[45,45]})}
+ else if(coords.length) map.setView(coords[0],14);
+ document.getElementById("content").innerHTML=html;
+ document.querySelectorAll(".point").forEach((el,i)=>el.onclick=()=>{map.setView(coords[i],15,{animate:true});markers[i].openPopup()});
+ setTimeout(()=>map.invalidateSize(),100);
+}
+renderDays();renderDay();
+</script>
+</body>
+</html>
