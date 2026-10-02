@@ -3,31 +3,37 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Barcelona 2026 | Roteiro Personalizado</title>
+<title>Barcelona | Roteiro de Viagem 2026</title><meta name="theme-color" content="#123b63">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
-:root{--red:#a52a45;--dark:#18222d;--grey:#687681;--light:#f4f7f8;--white:#fff}
+:root{--red:#ef3340;--blue:#0878e8;--navy:#14385e;--dark:#10243b;--grey:#687681;--light:#f2f6fa;--white:#fff}
 *{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--light);color:var(--dark)}
-header{background:linear-gradient(135deg,#75172f,#c94b64);color:#fff;padding:25px 18px;text-align:center}
-header h1{margin:0;font-size:29px}header p{margin:7px 0 0;opacity:.9}
-.days{display:flex;gap:8px;overflow-x:auto;background:#fff;padding:11px;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px #0002}
-.days button{border:0;background:#edf1f3;padding:10px 15px;border-radius:22px;white-space:nowrap;font-weight:800;cursor:pointer}
-.days button.active{background:var(--red);color:#fff}
+header{min-height:145px;background:
+radial-gradient(circle at 76% 20%,rgba(255,200,80,.35),transparent 24%),
+linear-gradient(120deg,#092943,#17659a 58%,#c65a42);
+color:#fff;padding:26px 4vw;text-align:left;display:flex;flex-direction:column;justify-content:center;
+position:relative;overflow:hidden}
+header:after{content:"";position:absolute;right:-70px;bottom:-130px;width:430px;height:260px;border:34px solid rgba(255,255,255,.08);border-radius:50%}
+header h1{position:relative;z-index:1;margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(42px,6vw,68px);line-height:1;letter-spacing:-2px;text-shadow:0 3px 14px #0005}
+header p{position:relative;z-index:1;margin:12px 0 0 5px;opacity:.95;text-transform:uppercase;letter-spacing:4px;font-size:12px;font-weight:800}
+.days{display:flex;gap:10px;overflow-x:auto;background:#fff;padding:12px 3vw;position:sticky;top:0;z-index:1000;box-shadow:0 3px 14px #18354f18}
+.days button{border:1px solid #e1e9f1;background:#f7f9fb;color:#17395f;padding:11px 20px;border-radius:16px;white-space:nowrap;font-weight:850;cursor:pointer;min-width:115px}
+.days button.active{background:linear-gradient(135deg,#0a79ea,#0866d1);border-color:transparent;color:#fff;box-shadow:0 7px 18px #0878e833}
 .layout{display:grid;grid-template-columns:410px 1fr}.sidebar{background:#fff;padding:18px;height:calc(100vh - 108px);overflow-y:auto}
 #map{height:calc(100vh - 108px);min-height:520px}
 h2{margin:0 0 4px}h3{margin:7px 0}.sub{color:var(--grey);line-height:1.5}
 .hotel{background:#263238;color:#fff;padding:14px;border-radius:15px;margin:14px 0}.hotel strong{display:block;font-size:16px}
-.point{border:1px solid #e2e7ea;border-radius:15px;padding:13px;margin:10px 0;background:#fff;cursor:pointer}
-.point:hover{box-shadow:0 6px 18px #0001}.head{display:flex;align-items:center;gap:10px}.num{width:37px;height:37px;min-width:37px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900}
+.point{border:1px solid #e2eaf2;border-radius:16px;padding:14px;margin:10px 0;background:#fff;cursor:pointer;box-shadow:0 4px 14px #17395f0c}
+.point:hover{box-shadow:0 6px 18px #0001}.head{display:flex;align-items:center;gap:10px}.num{width:39px;height:39px;min-width:39px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;box-shadow:0 3px 9px #0002}
 .name{font-weight:850}.desc{margin-top:8px;font-size:13px;line-height:1.5;color:#4f5b62}
-.navigate{display:inline-block;margin-top:9px;background:#263238;color:#fff;padding:8px 11px;border-radius:8px;text-decoration:none;font-size:12px;font-weight:750}
-.custom-marker{width:39px;height:39px;border-radius:50%;border:3px solid #fff;background:var(--red);box-shadow:0 2px 7px #0007;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900}
+.navigate{display:inline-block;margin-top:9px;background:var(--blue);color:#fff;padding:9px 13px;border-radius:9px;text-decoration:none;font-size:12px;font-weight:800}
+.custom-marker{width:40px;height:40px;border-radius:50% 50% 50% 8px;transform:rotate(-45deg);border:3px solid #fff;background:var(--red);box-shadow:0 4px 10px #0006;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900}.custom-marker span{transform:rotate(45deg)}
 .note{background:#fff7df;border-left:4px solid #d7a62d;padding:10px;border-radius:8px;margin:12px 0;font-size:13px;line-height:1.45}
-@media(max-width:850px){.layout{display:flex;flex-direction:column}#map{order:1;height:55vh;min-height:400px}.sidebar{order:2;height:auto;overflow:visible}header h1{font-size:24px}}
+@media(max-width:850px){header{min-height:118px;padding:20px 18px}header h1{font-size:42px}header p{font-size:10px;letter-spacing:2.5px}.layout{display:flex;flex-direction:column}#map{order:1;height:52vh;min-height:380px}.sidebar{order:2;height:auto;overflow:visible}.days{padding:9px}.days button{padding:10px 13px;min-width:100px}}
 </style>
 </head>
 <body>
-<header><h1>🇪🇸 Barcelona</h1><p>Roteiro personalizado · 19 a 23 Outubro 2026</p></header>
+<header><h1>🇪🇸 Barcelona</h1><p>Roteiro de viagem · 19–23 Outubro 2026</p></header>
 <nav class="days" id="days"></nav>
 <div class="layout"><aside class="sidebar"><div id="content"></div></aside><main id="map"></main></div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -62,7 +68,7 @@ L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,att
 let active=1,markers=[],route=null;
 function directions(p){return "https://www.google.com/maps/dir/?api=1&destination="+p.lat+","+p.lng}
 function clearMap(){markers.forEach(m=>map.removeLayer(m));markers=[];if(route){map.removeLayer(route);route=null}}
-function icon(n){return L.divIcon({className:"",html:`<div class="custom-marker">${n}</div>`,iconSize:[39,39],iconAnchor:[19,19]})}
+function icon(n){return L.divIcon({className:"",html:`<div class="custom-marker"><span>${n}</span></div>`,iconSize:[39,39],iconAnchor:[19,19]})}
 function renderDays(){const e=document.getElementById("days");e.innerHTML="";days.forEach(d=>{const b=document.createElement("button");b.textContent=d.date;b.className=d.id===active?"active":"";b.onclick=()=>{active=d.id;renderDays();renderDay()};e.appendChild(b)})}
 function renderDay(){
  const d=days.find(x=>x.id===active);clearMap();
