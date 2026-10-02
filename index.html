@@ -8,12 +8,11 @@
 <style>
 :root{--red:#ef3340;--blue:#0878e8;--navy:#14385e;--dark:#10243b;--grey:#687681;--light:#f2f6fa;--white:#fff}
 *{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--light);color:var(--dark)}
-header{min-height:145px;background:
-radial-gradient(circle at 76% 20%,rgba(255,200,80,.35),transparent 24%),
-linear-gradient(120deg,#092943,#17659a 58%,#c65a42);
+header{min-height:145px;
+background:linear-gradient(to bottom,#aa151b 0 25%,#f1bf00 25% 75%,#aa151b 75% 100%);
 color:#fff;padding:26px 4vw;text-align:left;display:flex;flex-direction:column;justify-content:center;
-position:relative;overflow:hidden}
-header:after{content:"";position:absolute;right:-70px;bottom:-130px;width:430px;height:260px;border:34px solid rgba(255,255,255,.08);border-radius:50%}
+position:relative;overflow:hidden;border-bottom:1px solid #8b1117}
+header:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.24),transparent 48%,rgba(255,255,255,.08));pointer-events:none}
 header h1{position:relative;z-index:1;margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(42px,6vw,68px);line-height:1;letter-spacing:-2px;text-shadow:0 3px 14px #0005}
 header p{position:relative;z-index:1;margin:12px 0 0 5px;opacity:.95;text-transform:uppercase;letter-spacing:4px;font-size:12px;font-weight:800}
 .days{display:flex;gap:10px;overflow-x:auto;background:#fff;padding:12px 3vw;position:sticky;top:0;z-index:1000;box-shadow:0 3px 14px #18354f18}
@@ -30,10 +29,21 @@ h2{margin:0 0 4px}h3{margin:7px 0}.sub{color:var(--grey);line-height:1.5}
 .custom-marker{width:40px;height:40px;border-radius:50% 50% 50% 8px;transform:rotate(-45deg);border:3px solid #fff;background:var(--red);box-shadow:0 4px 10px #0006;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900}.custom-marker span{transform:rotate(45deg)}
 .note{background:#fff7df;border-left:4px solid #d7a62d;padding:10px;border-radius:8px;margin:12px 0;font-size:13px;line-height:1.45}
 @media(max-width:850px){header{min-height:118px;padding:20px 18px}header h1{font-size:42px}header p{font-size:10px;letter-spacing:2.5px}.layout{display:flex;flex-direction:column}#map{order:1;height:52vh;min-height:380px}.sidebar{order:2;height:auto;overflow:visible}.days{padding:9px}.days button{padding:10px 13px;min-width:100px}}
+
+.point-photo{width:100%;height:128px;object-fit:cover;border-radius:12px;margin:0 0 11px;background:#e9eef2;display:block}
+.photo-skeleton{width:100%;height:128px;border-radius:12px;margin-bottom:11px;background:linear-gradient(110deg,#e8edf1 8%,#f6f8fa 18%,#e8edf1 33%);background-size:200% 100%;animation:shine 1.3s linear infinite}
+@keyframes shine{to{background-position-x:-200%}}
+.pop-photo{width:100%;height:145px;object-fit:cover;display:block;background:#e9eef2}
+.leaflet-popup-content-wrapper{overflow:hidden}
+.leaflet-popup-content{margin:0!important;min-width:245px}
+.popup-body{padding:14px}
+.popup-body b{font-size:16px;color:#10243b}
+.popup-body p{margin:7px 0 10px;line-height:1.4;color:#687681}
+.popup-body a{display:block;text-align:center;background:#0878e8;color:white!important;text-decoration:none;padding:10px;border-radius:9px;font-weight:800}
 </style>
 </head>
 <body>
-<header><h1>🇪🇸 Barcelona</h1><p>Roteiro de viagem · 19–23 Outubro 2026</p></header>
+<header><h1>Barcelona</h1><p>Roteiro de viagem · 19–23 Outubro 2026</p></header>
 <nav class="days" id="days"></nav>
 <div class="layout"><aside class="sidebar"><div id="content"></div></aside><main id="map"></main></div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -41,27 +51,27 @@ h2{margin:0 0 4px}h3{margin:7px 0}.sub{color:var(--grey);line-height:1.5}
 const hotel={name:"ibis Barcelona Santa Coloma",lat:41.455661,lng:2.204926};
 const days=[
 {id:1,date:"19 Out",title:"✈️ Chegada a Barcelona",description:"Chegada prevista por volta das 21:00. Deslocação para Santa Coloma de Gramenet, check-in e jantar.",points:[
-{n:1,name:"Aeroporto Barcelona–El Prat",lat:41.2974,lng:2.0833,d:"Chegada a Barcelona e início da deslocação para o hotel."},
+{n:1,name:"Aeroporto Barcelona–El Prat",wiki:"Barcelona–El Prat Airport",lat:41.2974,lng:2.0833,d:"Chegada a Barcelona e início da deslocação para o hotel."},
 {n:2,name:"ibis Barcelona Santa Coloma",lat:41.455661,lng:2.204926,d:"Hotel e base da viagem."}]},
 {id:2,date:"20 Out",title:"🏛️ Gaudí + Sagrada Família",description:"Dia organizado por proximidade, começando em Gràcia e terminando na Sagrada Família.",points:[
-{n:3,name:"Park Güell",lat:41.4145,lng:2.1527,d:"Parque de Gaudí e um dos locais mais emblemáticos de Barcelona."},
-{n:4,name:"Casa Vicens",lat:41.4035,lng:2.1506,d:"Uma das primeiras grandes obras de Antoni Gaudí."},
-{n:5,name:"Sagrada Família",lat:41.4036,lng:2.1744,d:"Basílica emblemática de Barcelona."}]},
+{n:3,name:"Park Güell",wiki:"Park Güell",lat:41.4145,lng:2.1527,d:"Parque de Gaudí e um dos locais mais emblemáticos de Barcelona."},
+{n:4,name:"Casa Vicens",wiki:"Casa Vicens",lat:41.4035,lng:2.1506,d:"Uma das primeiras grandes obras de Antoni Gaudí."},
+{n:5,name:"Sagrada Família",wiki:"Sagrada Família",lat:41.4036,lng:2.1744,d:"Basílica emblemática de Barcelona."}]},
 {id:3,date:"21 Out",title:"🏙️ Centro histórico + Barceloneta",description:"Percurso desde Arc de Triomf, passando pelo Born e Bairro Gótico, até ao mar.",points:[
-{n:6,name:"Arc de Triomf",lat:41.3911,lng:2.1806,d:"Início do percurso pelo centro histórico."},
-{n:7,name:"Parc de la Ciutadella",lat:41.3881,lng:2.1860,d:"Grande parque urbano junto ao Born."},
-{n:8,name:"Moco Museum Barcelona",lat:41.3852,lng:2.1809,d:"Museu de arte moderna e contemporânea."},
-{n:9,name:"Bairro Gótico",lat:41.3837,lng:2.1761,d:"Ruas históricas e praças do centro antigo."},
-{n:10,name:"Catedral de Barcelona",lat:41.3839,lng:2.1762,d:"Catedral no coração do Bairro Gótico."},
-{n:11,name:"Mercat de la Boqueria",lat:41.3817,lng:2.1716,d:"Mercado histórico junto às Ramblas."},
-{n:12,name:"Praia de Barceloneta",lat:41.3784,lng:2.1925,d:"Final do percurso junto ao mar."}]},
+{n:6,name:"Arc de Triomf",wiki:"Arc de Triomf",lat:41.3911,lng:2.1806,d:"Início do percurso pelo centro histórico."},
+{n:7,name:"Parc de la Ciutadella",wiki:"Parc de la Ciutadella",lat:41.3881,lng:2.1860,d:"Grande parque urbano junto ao Born."},
+{n:8,name:"Moco Museum Barcelona",wiki:"Moco Museum",lat:41.3852,lng:2.1809,d:"Museu de arte moderna e contemporânea."},
+{n:9,name:"Bairro Gótico",wiki:"Gothic Quarter, Barcelona",lat:41.3837,lng:2.1761,d:"Ruas históricas e praças do centro antigo."},
+{n:10,name:"Catedral de Barcelona",wiki:"Barcelona Cathedral",lat:41.3839,lng:2.1762,d:"Catedral no coração do Bairro Gótico."},
+{n:11,name:"Mercat de la Boqueria",wiki:"La Boqueria",lat:41.3817,lng:2.1716,d:"Mercado histórico junto às Ramblas."},
+{n:12,name:"Praia de Barceloneta",wiki:"Barceloneta, Barcelona",lat:41.3784,lng:2.1925,d:"Final do percurso junto ao mar."}]},
 {id:4,date:"22 Out",title:"🏠 Modernismo + Montjuïc",description:"Passeig de Gràcia pela manhã e Montjuïc para terminar o dia.",points:[
-{n:13,name:"La Pedrera · Casa Milà",lat:41.3954,lng:2.1619,d:"Obra modernista de Gaudí no Passeig de Gràcia."},
-{n:14,name:"Casa Batlló",lat:41.3917,lng:2.1649,d:"Uma das obras mais reconhecíveis de Gaudí."},
-{n:15,name:"Montjuïc",lat:41.3636,lng:2.1585,d:"Zona elevada com jardins, miradouros e equipamentos culturais."}]},
+{n:13,name:"La Pedrera · Casa Milà",wiki:"Casa Milà",lat:41.3954,lng:2.1619,d:"Obra modernista de Gaudí no Passeig de Gràcia."},
+{n:14,name:"Casa Batlló",wiki:"Casa Batlló",lat:41.3917,lng:2.1649,d:"Uma das obras mais reconhecíveis de Gaudí."},
+{n:15,name:"Montjuïc",wiki:"Montjuïc",lat:41.3636,lng:2.1585,d:"Zona elevada com jardins, miradouros e equipamentos culturais."}]},
 {id:5,date:"23 Out",title:"✈️ Regresso",description:"Voo às 12:00. Manhã reservada à saída do hotel e deslocação para o aeroporto.",points:[
 {n:16,name:"ibis Barcelona Santa Coloma",lat:41.455661,lng:2.204926,d:"Saída do hotel com antecedência."},
-{n:17,name:"Aeroporto Barcelona–El Prat",lat:41.2974,lng:2.0833,d:"Destino final do roteiro."}]}
+{n:17,name:"Aeroporto Barcelona–El Prat",wiki:"Barcelona–El Prat Airport",lat:41.2974,lng:2.0833,d:"Destino final do roteiro."}]}
 ];
 const map=L.map("map").setView([41.39,2.17],12);
 L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"&copy; OpenStreetMap contributors"}).addTo(map);
@@ -70,6 +80,28 @@ function directions(p){return "https://www.google.com/maps/dir/?api=1&destinatio
 function clearMap(){markers.forEach(m=>map.removeLayer(m));markers=[];if(route){map.removeLayer(route);route=null}}
 function icon(n){return L.divIcon({className:"",html:`<div class="custom-marker"><span>${n}</span></div>`,iconSize:[39,39],iconAnchor:[19,19]})}
 function renderDays(){const e=document.getElementById("days");e.innerHTML="";days.forEach(d=>{const b=document.createElement("button");b.textContent=d.date;b.className=d.id===active?"active":"";b.onclick=()=>{active=d.id;renderDays();renderDay()};e.appendChild(b)})}
+
+const imageCache={};
+async function getWikiImage(p){
+  if(!p.wiki) return "";
+  if(imageCache[p.wiki]) return imageCache[p.wiki];
+  try{
+    const u="https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=pageimages&pithumbsize=700&titles="+encodeURIComponent(p.wiki);
+    const r=await fetch(u); const j=await r.json();
+    const page=Object.values(j.query.pages)[0];
+    const src=page.thumbnail ? page.thumbnail.source : "";
+    imageCache[p.wiki]=src; return src;
+  }catch(e){return ""}
+}
+async function loadPointImage(p,targetId,isPopup=false){
+  const src=await getWikiImage(p); if(!src)return;
+  const root=isPopup?document.getElementById(targetId):document.querySelector(`[data-img="${targetId}"]`);
+  if(!root)return;
+  const img=document.createElement("img"); img.src=src; img.alt=p.name;
+  img.className=isPopup?"pop-photo":"point-photo";
+  root.replaceWith(img);
+}
+
 function renderDay(){
  const d=days.find(x=>x.id===active);clearMap();
  let html=`<h2>${d.date}</h2><h3>${d.title}</h3><p class="sub">${d.description}</p>`;
@@ -84,6 +116,7 @@ function renderDay(){
  if(coords.length>1){route=L.polyline(coords,{weight:4,opacity:.65,dashArray:"8 8"}).addTo(map);map.fitBounds(L.latLngBounds(coords),{padding:[45,45]})}
  else if(coords.length) map.setView(coords[0],14);
  document.getElementById("content").innerHTML=html;
+d.points.forEach((p,i)=>loadPointImage(p,i,false));
  document.querySelectorAll(".point").forEach((el,i)=>el.onclick=()=>{map.setView(coords[i],15,{animate:true});markers[i].openPopup()});
  setTimeout(()=>map.invalidateSize(),100);
 }
