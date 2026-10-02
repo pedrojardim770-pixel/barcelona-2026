@@ -2,124 +2,89 @@
 <html lang="pt-PT">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Barcelona | Roteiro de Viagem 2026</title><meta name="theme-color" content="#123b63">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Barcelona | Roteiro de Viagem 2026</title>
+<meta name="theme-color" content="#0b2f55">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
-:root{--red:#ef3340;--blue:#0878e8;--navy:#14385e;--dark:#10243b;--grey:#687681;--light:#f2f6fa;--white:#fff}
-*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--light);color:var(--dark)}
-header{min-height:145px;
-background:linear-gradient(to bottom,#aa151b 0 25%,#f1bf00 25% 75%,#aa151b 75% 100%);
-color:#fff;padding:26px 4vw;text-align:left;display:flex;flex-direction:column;justify-content:center;
-position:relative;overflow:hidden;border-bottom:1px solid #8b1117}
-header:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.24),transparent 48%,rgba(255,255,255,.08));pointer-events:none}
-header h1{position:relative;z-index:1;margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(42px,6vw,68px);line-height:1;letter-spacing:-2px;text-shadow:0 3px 14px #0005}
-header p{position:relative;z-index:1;margin:12px 0 0 5px;opacity:.95;text-transform:uppercase;letter-spacing:4px;font-size:12px;font-weight:800}
-.days{display:flex;gap:10px;overflow-x:auto;background:#fff;padding:12px 3vw;position:sticky;top:0;z-index:1000;box-shadow:0 3px 14px #18354f18}
-.days button{border:1px solid #e1e9f1;background:#f7f9fb;color:#17395f;padding:11px 20px;border-radius:16px;white-space:nowrap;font-weight:850;cursor:pointer;min-width:115px}
-.days button.active{background:linear-gradient(135deg,#0a79ea,#0866d1);border-color:transparent;color:#fff;box-shadow:0 7px 18px #0878e833}
-.layout{display:grid;grid-template-columns:410px 1fr}.sidebar{background:#fff;padding:18px;height:calc(100vh - 108px);overflow-y:auto}
-#map{height:calc(100vh - 108px);min-height:520px}
-h2{margin:0 0 4px}h3{margin:7px 0}.sub{color:var(--grey);line-height:1.5}
-.hotel{background:#263238;color:#fff;padding:14px;border-radius:15px;margin:14px 0}.hotel strong{display:block;font-size:16px}
-.point{border:1px solid #e2eaf2;border-radius:16px;padding:14px;margin:10px 0;background:#fff;cursor:pointer;box-shadow:0 4px 14px #17395f0c}
-.point:hover{box-shadow:0 6px 18px #0001}.head{display:flex;align-items:center;gap:10px}.num{width:39px;height:39px;min-width:39px;border-radius:50%;background:var(--red);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;box-shadow:0 3px 9px #0002}
-.name{font-weight:850}.desc{margin-top:8px;font-size:13px;line-height:1.5;color:#4f5b62}
-.navigate{display:inline-block;margin-top:9px;background:var(--blue);color:#fff;padding:9px 13px;border-radius:9px;text-decoration:none;font-size:12px;font-weight:800}
-.custom-marker{width:40px;height:40px;border-radius:50% 50% 50% 8px;transform:rotate(-45deg);border:3px solid #fff;background:var(--red);box-shadow:0 4px 10px #0006;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900}.custom-marker span{transform:rotate(45deg)}
-.note{background:#fff7df;border-left:4px solid #d7a62d;padding:10px;border-radius:8px;margin:12px 0;font-size:13px;line-height:1.45}
-@media(max-width:850px){header{min-height:118px;padding:20px 18px}header h1{font-size:42px}header p{font-size:10px;letter-spacing:2.5px}.layout{display:flex;flex-direction:column}#map{order:1;height:52vh;min-height:380px}.sidebar{order:2;height:auto;overflow:visible}.days{padding:9px}.days button{padding:10px 13px;min-width:100px}}
-
-.point-photo{width:100%;height:128px;object-fit:cover;border-radius:12px;margin:0 0 11px;background:#e9eef2;display:block}
-.photo-skeleton{width:100%;height:128px;border-radius:12px;margin-bottom:11px;background:linear-gradient(110deg,#e8edf1 8%,#f6f8fa 18%,#e8edf1 33%);background-size:200% 100%;animation:shine 1.3s linear infinite}
-@keyframes shine{to{background-position-x:-200%}}
-.pop-photo{width:100%;height:145px;object-fit:cover;display:block;background:#e9eef2}
-.leaflet-popup-content-wrapper{overflow:hidden}
-.leaflet-popup-content{margin:0!important;min-width:245px}
-.popup-body{padding:14px}
-.popup-body b{font-size:16px;color:#10243b}
-.popup-body p{margin:7px 0 10px;line-height:1.4;color:#687681}
-.popup-body a{display:block;text-align:center;background:#0878e8;color:white!important;text-decoration:none;padding:10px;border-radius:9px;font-weight:800}
+:root{--blue:#0d6fe8;--blue2:#0758bd;--navy:#0c2d52;--ink:#14263a;--muted:#64748b;--red:#ef3340;--orange:#f97316;--violet:#7c3aed;--line:#dce6f0;--soft:#f4f8fc;--white:#fff}
+*{box-sizing:border-box}html,body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:#eef4f8;color:var(--ink)}button,a{font:inherit}
+.hero{height:158px;position:relative;overflow:hidden;color:white;background:#163a5b url('https://commons.wikimedia.org/wiki/Special:FilePath/Barcelona%20-%20Parc%20G%C3%BCell%20-%20Panorama%20View%20with%20Torre%20Gl%C3%B2ries%2C%20Sagrada%20Fam%C3%ADlia%20%26%20Montju%C3%AFc%2001.jpg?width=1600') center 45%/cover no-repeat}
+.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,20,39,.76) 0%,rgba(3,20,39,.38) 48%,rgba(3,20,39,.18) 100%)}
+.hero-inner{position:relative;z-index:2;height:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:20px clamp(22px,4vw,58px)}
+.brand{display:flex;align-items:center;gap:18px;min-width:0}.flag{width:76px;height:50px;border-radius:12px;box-shadow:0 5px 16px #0006;overflow:hidden;display:grid;grid-template-rows:1fr 2fr 1fr;flex:none}.flag i:nth-child(1),.flag i:nth-child(3){background:#aa151b}.flag i:nth-child(2){background:#f1bf00;position:relative}.flag i:nth-child(2):after{content:"🇪🇸";position:absolute;left:8px;top:50%;transform:translateY(-50%);font-size:22px}
+.brand h1{font:700 clamp(44px,6vw,72px)/.9 Georgia,"Times New Roman",serif;margin:0;text-shadow:0 3px 14px #0009;letter-spacing:-2px}.brand p{margin:9px 0 0 5px;font-weight:750;text-transform:uppercase;letter-spacing:6px;font-size:12px;text-shadow:0 2px 8px #000}
+.legend{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.legend span{background:rgba(7,35,63,.84);backdrop-filter:blur(5px);padding:10px 13px;border-radius:22px;font-size:13px;font-weight:700;white-space:nowrap}
+.days{display:flex;gap:12px;overflow-x:auto;padding:11px clamp(16px,3vw,34px);background:white;box-shadow:0 3px 15px #15324d14;position:sticky;top:0;z-index:1000}.days::-webkit-scrollbar{height:0}.days button{border:1px solid #dbe6f0;background:#f4f8fc;color:#173a62;border-radius:17px;min-width:176px;padding:10px 17px;cursor:pointer;text-align:left;display:flex;align-items:center;gap:12px;transition:.2s}.days button:hover{transform:translateY(-1px)}.days button.active{color:white;border-color:transparent;background:linear-gradient(135deg,var(--blue),var(--blue2));box-shadow:0 7px 18px #0d6fe833}.cal{font-size:23px}.date{font-weight:900;font-size:17px;line-height:1.05}.weekday{font-size:11px;margin-top:3px;opacity:.9}
+.app{display:grid;grid-template-columns:minmax(330px,420px) 1fr;min-height:calc(100vh - 224px)}.sidebar{background:#fff;border-right:1px solid var(--line);padding:18px;overflow:auto;max-height:calc(100vh - 224px)}.dayhead{border-radius:20px;padding:18px;margin-bottom:13px;background:linear-gradient(135deg,#f9fbfd,#e8f5ff);border:1px solid #e2edf5}.dayhead .big{font:700 35px/1 Georgia,serif;color:#123b66}.dayhead h2{font-size:17px;margin:8px 0 5px}.dayhead p{margin:0;color:var(--muted);font-size:13px;line-height:1.45}
+.hotel{display:flex;align-items:center;gap:12px;background:#122f4b;color:white;border-radius:15px;padding:12px 14px;margin:11px 0 14px}.type-icon{width:39px;height:39px;display:grid;place-items:center;border-radius:50%;background:var(--blue);font-size:18px;flex:none}.hotel b{font-size:14px}.hotel small{display:block;margin-top:3px;opacity:.8}
+.stop{display:grid;grid-template-columns:46px minmax(0,1fr) 28px;align-items:center;gap:9px;padding:11px 9px;border-bottom:1px solid #e8eef4;cursor:pointer;border-radius:13px;transition:.18s}.stop:hover,.stop.selected{background:#f1f7ff}.stop .badge{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--red);color:white;font-weight:900;box-shadow:0 3px 8px #0002}.stop .stopname{font-weight:850;font-size:14px;line-height:1.25;padding-right:4px}.stop .stoptxt{color:var(--muted);font-size:12px;margin-top:3px;line-height:1.25}.chev{font-size:25px;color:#31485f;text-align:center}
+.mapwrap{position:relative;min-width:0}#map{height:calc(100vh - 224px);min-height:520px;background:#dbe9f4}.map-title{position:absolute;z-index:700;left:16px;top:15px;background:white;border-radius:15px;padding:8px 12px;box-shadow:0 5px 18px #18354f2a;font-size:12px;font-weight:800;color:#173a62;pointer-events:none}
+.marker-pin{width:42px;height:42px;border-radius:50% 50% 50% 7px;transform:rotate(-45deg);background:var(--red);border:3px solid white;box-shadow:0 5px 13px #0005;display:grid;place-items:center;color:#fff;font-weight:900;font-size:15px}.marker-pin span{transform:rotate(45deg)}
+.leaflet-popup-content-wrapper{padding:0!important;border-radius:20px!important;overflow:hidden;box-shadow:0 14px 42px #10243b40!important}.leaflet-popup-content{margin:0!important;width:292px!important}.leaflet-popup-tip{box-shadow:none}.popup-photo{height:150px;width:100%;object-fit:cover;display:block;background:linear-gradient(135deg,#dce8f2,#eef4f8)}.popup-info{padding:16px 17px 15px}.popup-title{display:flex;align-items:center;gap:10px;margin-bottom:8px}.popup-num{width:31px;height:31px;border-radius:50%;display:grid;place-items:center;flex:none;background:var(--red);color:#fff;font-weight:900}.popup-title b{font:700 18px/1.18 Georgia,"Times New Roman",serif;color:#10243b}.popup-info p{margin:0 0 12px;color:#566575;font-size:13px;line-height:1.45}.go{display:block;text-align:center;padding:11px 13px;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:white!important;text-decoration:none;font-weight:850}.photo-fallback{height:150px;display:grid;place-items:center;background:linear-gradient(135deg,#dce8f2,#f5f8fb);font-size:38px}
+.credit{font-size:10px;color:#718096;padding:10px 2px 2px;line-height:1.4}
+@media(max-width:900px){.hero{height:132px}.hero-inner{padding:16px 18px}.flag{width:58px;height:39px}.flag i:nth-child(2):after{font-size:17px;left:5px}.brand{gap:12px}.brand h1{font-size:44px}.brand p{font-size:9px;letter-spacing:3px}.legend{display:none}.days{padding:9px 10px;gap:8px}.days button{min-width:132px;padding:9px 11px}.date{font-size:15px}.weekday{font-size:10px}.cal{font-size:19px}.app{display:flex;flex-direction:column}.mapwrap{order:1}#map{height:53vh;min-height:390px}.sidebar{order:2;max-height:none;overflow:visible;padding:14px}.map-title{top:10px;left:10px}.leaflet-popup-content{width:260px!important}.popup-photo{height:126px}.popup-info{padding:14px 15px}.popup-title b{font-size:17px}}
+@media(max-width:420px){.hero{height:118px}.brand h1{font-size:39px}.brand p{letter-spacing:2.2px}.flag{width:51px;height:35px;border-radius:9px}.days button{min-width:123px}.leaflet-popup-content{width:242px!important}.popup-photo{height:115px}}
 </style>
 </head>
 <body>
-<header><h1>Barcelona</h1><p>Roteiro de viagem · 19–23 Outubro 2026</p></header>
+<header class="hero"><div class="hero-inner"><div class="brand"><div class="flag" aria-label="Bandeira de Espanha"><i></i><i></i><i></i></div><div><h1>Barcelona</h1><p>Roteiro de viagem 2026</p></div></div><div class="legend"><span>🏨 Hotel</span><span>📷 Visitas</span><span>✈️ Aeroporto</span></div></div></header>
 <nav class="days" id="days"></nav>
-<div class="layout"><aside class="sidebar"><div id="content"></div></aside><main id="map"></main></div>
+<div class="app"><aside class="sidebar"><div id="content"></div></aside><section class="mapwrap"><div class="map-title">🗺️ Mapa interativo</div><div id="map"></div></section></div>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 const hotel={name:"ibis Barcelona Santa Coloma",lat:41.455661,lng:2.204926};
+const IMG={
+airport:"https://www.truecalia.com/blog/wp-content/uploads/01.jpg",
+park:"https://4.bp.blogspot.com/-wt3BF9u2aCY/UPHDTrEKzXI/AAAAAAAABBI/0POBzZkNTmg/s1600/arc_Triomf.jpg",
+parkguell:"https://cyberbob2000.de/wp-content/uploads/2025/01/park-guell-barcelona.jpg",
+vicens:"https://www.dosde.com/media/catalog/product/cache/14e6b5f581e3c21e671aa9d9a9bd85ef/2/0/20-024-00_casa_vicens.jpg",
+sagrada:"https://barcelonando.com/wp-content/uploads/sites/3/2020/05/Sagrada-Familia-Torres.jpg?width=632",
+arc:"https://4.bp.blogspot.com/-wt3BF9u2aCY/UPHDTrEKzXI/AAAAAAAABBI/0POBzZkNTmg/s1600/arc_Triomf.jpg",
+ciutadella:"https://www.bautrip.com/images/what-to-visit/ciutadella-park-barcelona.jpg",
+moco:"https://www.mocomuseum.com/wp-content/uploads/2024/01/moco-museum-barcelona-entrance.jpg",
+gothic:"https://images.squarespace-cdn.com/content/v1/560dbc25e4b0969564758eb5/1558530026726-DMJDFOHPIMN6TM8XX0EW/Gothic%2BQuarter%2B%23Barcelona",
+cathedral:"https://media3.thrillophilia.com/filestore/o6fxq1t5x9wirjwxxgis5x1lqw4a_shutterstock_123051379_adac2cedd1.jpg?dpr=2&w=1080",
+boqueria:"https://images.unsplash.com/photo-1644144979169-b1e85ca74332?auto=format&fit=crop&w=900&q=80",
+barceloneta:"https://a.cdn-hotels.com/gdcs/production175/d1439/012c30a8-0fc8-4b7a-8491-71a4569417a6.jpg",
+pedrera:"https://www.pelago.com/img/products/ES-Spain/gaudi-houses-tour-casa-vicens-casa-batllo-casa-mila/39a321eb-1ad4-46df-8b4c-78e98474341b_gaudi-houses-casa-vicens-casa-batllo-casa-mila-guided-tour-in-english-mandarin-korean.jpg",
+batllo:"https://www.catalunyamagrada.cat/uploads/s1/27/56/63/31/rita-candeias-gfbjlpibduo-unsplash.jpeg",
+montjuic:"https://www.22places.de/images/2019/06/montjuic-aussicht.jpg"
+};
 const days=[
-{id:1,date:"19 Out",title:"✈️ Chegada a Barcelona",description:"Chegada prevista por volta das 21:00. Deslocação para Santa Coloma de Gramenet, check-in e jantar.",points:[
-{n:1,name:"Aeroporto Barcelona–El Prat",wiki:"Barcelona–El Prat Airport",lat:41.2974,lng:2.0833,d:"Chegada a Barcelona e início da deslocação para o hotel."},
-{n:2,name:"ibis Barcelona Santa Coloma",lat:41.455661,lng:2.204926,d:"Hotel e base da viagem."}]},
-{id:2,date:"20 Out",title:"🏛️ Gaudí + Sagrada Família",description:"Dia organizado por proximidade, começando em Gràcia e terminando na Sagrada Família.",points:[
-{n:3,name:"Park Güell",wiki:"Park Güell",lat:41.4145,lng:2.1527,d:"Parque de Gaudí e um dos locais mais emblemáticos de Barcelona."},
-{n:4,name:"Casa Vicens",wiki:"Casa Vicens",lat:41.4035,lng:2.1506,d:"Uma das primeiras grandes obras de Antoni Gaudí."},
-{n:5,name:"Sagrada Família",wiki:"Sagrada Família",lat:41.4036,lng:2.1744,d:"Basílica emblemática de Barcelona."}]},
-{id:3,date:"21 Out",title:"🏙️ Centro histórico + Barceloneta",description:"Percurso desde Arc de Triomf, passando pelo Born e Bairro Gótico, até ao mar.",points:[
-{n:6,name:"Arc de Triomf",wiki:"Arc de Triomf",lat:41.3911,lng:2.1806,d:"Início do percurso pelo centro histórico."},
-{n:7,name:"Parc de la Ciutadella",wiki:"Parc de la Ciutadella",lat:41.3881,lng:2.1860,d:"Grande parque urbano junto ao Born."},
-{n:8,name:"Moco Museum Barcelona",wiki:"Moco Museum",lat:41.3852,lng:2.1809,d:"Museu de arte moderna e contemporânea."},
-{n:9,name:"Bairro Gótico",wiki:"Gothic Quarter, Barcelona",lat:41.3837,lng:2.1761,d:"Ruas históricas e praças do centro antigo."},
-{n:10,name:"Catedral de Barcelona",wiki:"Barcelona Cathedral",lat:41.3839,lng:2.1762,d:"Catedral no coração do Bairro Gótico."},
-{n:11,name:"Mercat de la Boqueria",wiki:"La Boqueria",lat:41.3817,lng:2.1716,d:"Mercado histórico junto às Ramblas."},
-{n:12,name:"Praia de Barceloneta",wiki:"Barceloneta, Barcelona",lat:41.3784,lng:2.1925,d:"Final do percurso junto ao mar."}]},
-{id:4,date:"22 Out",title:"🏠 Modernismo + Montjuïc",description:"Passeig de Gràcia pela manhã e Montjuïc para terminar o dia.",points:[
-{n:13,name:"La Pedrera · Casa Milà",wiki:"Casa Milà",lat:41.3954,lng:2.1619,d:"Obra modernista de Gaudí no Passeig de Gràcia."},
-{n:14,name:"Casa Batlló",wiki:"Casa Batlló",lat:41.3917,lng:2.1649,d:"Uma das obras mais reconhecíveis de Gaudí."},
-{n:15,name:"Montjuïc",wiki:"Montjuïc",lat:41.3636,lng:2.1585,d:"Zona elevada com jardins, miradouros e equipamentos culturais."}]},
-{id:5,date:"23 Out",title:"✈️ Regresso",description:"Voo às 12:00. Manhã reservada à saída do hotel e deslocação para o aeroporto.",points:[
-{n:16,name:"ibis Barcelona Santa Coloma",lat:41.455661,lng:2.204926,d:"Saída do hotel com antecedência."},
-{n:17,name:"Aeroporto Barcelona–El Prat",wiki:"Barcelona–El Prat Airport",lat:41.2974,lng:2.0833,d:"Destino final do roteiro."}]}
+{id:1,date:"19 Out",weekday:"Segunda-feira",title:"✈️ Chegada a Barcelona",description:"Chegada prevista por volta das 21:00. Deslocação para Santa Coloma de Gramenet e check-in.",points:[
+{n:1,name:"Aeroporto Barcelona–El Prat",lat:41.2974,lng:2.0833,d:"Chegada a Barcelona e início da deslocação para o hotel.",img:IMG.airport},
+{n:2,name:"ibis Barcelona Santa Coloma",lat:41.455661,lng:2.204926,d:"Hotel e base da viagem.",img:""}]},
+{id:2,date:"20 Out",weekday:"Terça-feira",title:"🏛️ Gaudí + Sagrada Família",description:"Dia organizado por proximidade, começando em Gràcia e terminando na Sagrada Família.",points:[
+{n:3,name:"Park Güell",lat:41.4145,lng:2.1527,d:"Parque de Gaudí e um dos locais mais emblemáticos de Barcelona.",img:IMG.parkguell},
+{n:4,name:"Casa Vicens",lat:41.4035,lng:2.1506,d:"Uma das primeiras grandes obras de Antoni Gaudí.",img:IMG.vicens},
+{n:5,name:"Sagrada Família",lat:41.4036,lng:2.1744,d:"Basílica emblemática de Barcelona e obra-prima de Gaudí.",img:IMG.sagrada}]},
+{id:3,date:"21 Out",weekday:"Quarta-feira",title:"🏙️ Centro histórico + Barceloneta",description:"Percurso desde o Arc de Triomf, passando pelo Born e Bairro Gótico, até ao mar.",points:[
+{n:6,name:"Arc de Triomf",lat:41.3911,lng:2.1806,d:"Monumento que marca o início do percurso pelo centro histórico.",img:IMG.arc},
+{n:7,name:"Parc de la Ciutadella",lat:41.3881,lng:2.1860,d:"Grande parque urbano junto ao Born.",img:IMG.ciutadella},
+{n:8,name:"Moco Museum Barcelona",lat:41.3852,lng:2.1809,d:"Museu de arte moderna e contemporânea.",img:IMG.moco},
+{n:9,name:"Bairro Gótico",lat:41.3837,lng:2.1761,d:"Ruas históricas e praças do centro antigo.",img:IMG.gothic},
+{n:10,name:"Catedral de Barcelona",lat:41.3839,lng:2.1762,d:"Catedral no coração do Bairro Gótico.",img:IMG.cathedral},
+{n:11,name:"Mercat de la Boqueria",lat:41.3817,lng:2.1716,d:"Mercado histórico junto à Rambla.",img:IMG.boqueria},
+{n:12,name:"Praia de Barceloneta",lat:41.3784,lng:2.1925,d:"Final do percurso junto ao Mediterrâneo.",img:IMG.barceloneta}]},
+{id:4,date:"22 Out",weekday:"Quinta-feira",title:"🏠 Modernismo + Montjuïc",description:"Passeig de Gràcia pela manhã e Montjuïc para terminar o dia.",points:[
+{n:13,name:"La Pedrera · Casa Milà",lat:41.3954,lng:2.1619,d:"Obra modernista de Gaudí no Passeig de Gràcia.",img:IMG.pedrera},
+{n:14,name:"Casa Batlló",lat:41.3917,lng:2.1649,d:"Uma das obras mais reconhecíveis de Gaudí.",img:IMG.batllo},
+{n:15,name:"Montjuïc",lat:41.3636,lng:2.1585,d:"Zona elevada com jardins, miradouros e equipamentos culturais.",img:IMG.montjuic}]},
+{id:5,date:"23 Out",weekday:"Sexta-feira",title:"✈️ Regresso",description:"Voo às 12:00. Manhã reservada à saída do hotel e deslocação para o aeroporto.",points:[
+{n:16,name:"ibis Barcelona Santa Coloma",lat:41.455661,lng:2.204926,d:"Saída do hotel com antecedência.",img:""},
+{n:17,name:"Aeroporto Barcelona–El Prat",lat:41.2974,lng:2.0833,d:"Destino final do roteiro.",img:IMG.airport}]}
 ];
-const map=L.map("map").setView([41.39,2.17],12);
-L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"&copy; OpenStreetMap contributors"}).addTo(map);
+const map=L.map("map",{zoomControl:true}).setView([41.39,2.17],12);
+L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
 let active=1,markers=[],route=null;
-function directions(p){return "https://www.google.com/maps/dir/?api=1&destination="+p.lat+","+p.lng}
+const directions=p=>"https://www.google.com/maps/dir/?api=1&destination="+p.lat+","+p.lng;
+function pin(n){return L.divIcon({className:"",html:`<div class="marker-pin"><span>${n}</span></div>`,iconSize:[42,42],iconAnchor:[21,38],popupAnchor:[0,-34]})}
+function safeImg(p){return p.img?`<img class="popup-photo" src="${p.img}" alt="${p.name}" onerror="this.outerHTML='<div class=&quot;photo-fallback&quot;>📷</div>'">`:`<div class="photo-fallback">${p.name.includes('ibis')?'🏨':'📷'}</div>`}
+function popup(p){return `${safeImg(p)}<div class="popup-info"><div class="popup-title"><span class="popup-num">${p.n}</span><b>${p.name}</b></div><p>${p.d}</p><a class="go" target="_blank" rel="noopener" href="${directions(p)}">📍 Direções</a></div>`}
 function clearMap(){markers.forEach(m=>map.removeLayer(m));markers=[];if(route){map.removeLayer(route);route=null}}
-function icon(n){return L.divIcon({className:"",html:`<div class="custom-marker"><span>${n}</span></div>`,iconSize:[39,39],iconAnchor:[19,19]})}
-function renderDays(){const e=document.getElementById("days");e.innerHTML="";days.forEach(d=>{const b=document.createElement("button");b.textContent=d.date;b.className=d.id===active?"active":"";b.onclick=()=>{active=d.id;renderDays();renderDay()};e.appendChild(b)})}
-
-const imageCache={};
-async function getWikiImage(p){
-  if(!p.wiki) return "";
-  if(imageCache[p.wiki]) return imageCache[p.wiki];
-  try{
-    const u="https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&prop=pageimages&pithumbsize=700&titles="+encodeURIComponent(p.wiki);
-    const r=await fetch(u); const j=await r.json();
-    const page=Object.values(j.query.pages)[0];
-    const src=page.thumbnail ? page.thumbnail.source : "";
-    imageCache[p.wiki]=src; return src;
-  }catch(e){return ""}
-}
-async function loadPointImage(p,targetId,isPopup=false){
-  const src=await getWikiImage(p); if(!src)return;
-  const root=isPopup?document.getElementById(targetId):document.querySelector(`[data-img="${targetId}"]`);
-  if(!root)return;
-  const img=document.createElement("img"); img.src=src; img.alt=p.name;
-  img.className=isPopup?"pop-photo":"point-photo";
-  root.replaceWith(img);
-}
-
-function renderDay(){
- const d=days.find(x=>x.id===active);clearMap();
- let html=`<h2>${d.date}</h2><h3>${d.title}</h3><p class="sub">${d.description}</p>`;
- if(active>1&&active<5)html+=`<div class="hotel"><strong>🏨 ${hotel.name}</strong><small>Base da viagem</small></div>`;
- const coords=[];
- d.points.forEach(p=>{
-   const m=L.marker([p.lat,p.lng],{icon:icon(p.n)}).addTo(map);
-   m.bindPopup(`<strong>${p.n}. ${p.name}</strong><p>${p.d}</p><a target="_blank" href="${directions(p)}">📍 Direções</a>`);
-   markers.push(m);coords.push([p.lat,p.lng]);
-   html+=`<div class="point" data-n="${p.n}"><div class="head"><span class="num">${p.n}</span><span class="name">${p.name}</span></div><div class="desc">${p.d}</div><a class="navigate" target="_blank" onclick="event.stopPropagation()" href="${directions(p)}">📍 Direções</a></div>`;
- });
- if(coords.length>1){route=L.polyline(coords,{weight:4,opacity:.65,dashArray:"8 8"}).addTo(map);map.fitBounds(L.latLngBounds(coords),{padding:[45,45]})}
- else if(coords.length) map.setView(coords[0],14);
- document.getElementById("content").innerHTML=html;
-d.points.forEach((p,i)=>loadPointImage(p,i,false));
- document.querySelectorAll(".point").forEach((el,i)=>el.onclick=()=>{map.setView(coords[i],15,{animate:true});markers[i].openPopup()});
- setTimeout(()=>map.invalidateSize(),100);
-}
+function renderDays(){const nav=document.getElementById('days');nav.innerHTML='';days.forEach(d=>{const b=document.createElement('button');b.className=d.id===active?'active':'';b.innerHTML=`<span class="cal">▣</span><span><span class="date">${d.date}</span><span class="weekday">${d.weekday}</span></span>`;b.addEventListener('click',()=>{active=d.id;renderDays();renderDay()});nav.appendChild(b)})}
+function renderDay(){const d=days.find(x=>x.id===active);clearMap();let html=`<div class="dayhead"><div class="big">${d.date}</div><h2>${d.weekday}</h2><p><b>${d.title}</b><br>${d.description}</p></div>`;if(active>1&&active<5)html+=`<div class="hotel"><span class="type-icon">🏨</span><span><b>${hotel.name}</b><small>Base da viagem</small></span></div>`;const coords=[];d.points.forEach((p,i)=>{const m=L.marker([p.lat,p.lng],{icon:pin(p.n)}).addTo(map).bindPopup(popup(p),{maxWidth:292,closeButton:true});markers.push(m);coords.push([p.lat,p.lng]);html+=`<div class="stop" data-i="${i}" role="button" tabindex="0"><span class="badge">${p.n}</span><span><span class="stopname">${p.name}</span><span class="stoptxt">${p.d}</span></span><span class="chev">›</span></div>`});html+=`<div class="credit">Fotografias ilustrativas dos locais. O botão “Direções” abre o destino no Google Maps.</div>`;document.getElementById('content').innerHTML=html;if(coords.length>1){route=L.polyline(coords,{color:'#1479e8',weight:3,opacity:.45,dashArray:'7 9'}).addTo(map);map.fitBounds(L.latLngBounds(coords),{padding:[55,55],maxZoom:14})}else if(coords.length)map.setView(coords[0],14);document.querySelectorAll('.stop').forEach(el=>{const open=()=>{const i=+el.dataset.i;document.querySelectorAll('.stop').forEach(x=>x.classList.remove('selected'));el.classList.add('selected');map.flyTo(coords[i],15,{duration:.55});setTimeout(()=>markers[i].openPopup(),300)};el.addEventListener('click',open);el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open()}})});setTimeout(()=>map.invalidateSize(),120)}
 renderDays();renderDay();
 </script>
 </body>
