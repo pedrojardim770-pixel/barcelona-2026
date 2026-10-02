@@ -9,10 +9,10 @@
 <style>
 :root{--blue:#0d6fe8;--blue2:#0758bd;--navy:#0c2d52;--ink:#14263a;--muted:#64748b;--red:#ef3340;--orange:#f97316;--violet:#7c3aed;--line:#dce6f0;--soft:#f4f8fc;--white:#fff}
 *{box-sizing:border-box}html,body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:#eef4f8;color:var(--ink)}button,a{font:inherit}
-.hero{height:158px;position:relative;overflow:hidden;color:white;background:#163a5b url('https://commons.wikimedia.org/wiki/Special:Redirect/file/Barcelona%20Skyline%20as%20seen%20from%20Parc%20G%C3%BCell.jpg?width=2000') center 48%/cover no-repeat}
+.hero{height:158px;position:relative;overflow:hidden;color:white;background:#163a5b url('https://commons.wikimedia.org/wiki/Special:Redirect/file/Panoramic%20View%20of%20the%20Bas%C3%ADlica%20de%20la%20Sagrada%20Fam%C3%ADlia.jpg?width=2000') center 58%/cover no-repeat}
 .hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,20,39,.68) 0%,rgba(3,20,39,.26) 52%,rgba(3,20,39,.10) 100%)}
 .hero-inner{position:relative;z-index:2;height:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:20px clamp(22px,4vw,58px)}
-.brand{display:flex;align-items:center;gap:18px;min-width:0}.flag{width:76px;height:50px;border-radius:12px;box-shadow:0 5px 16px #0006;overflow:hidden;display:grid;grid-template-rows:1fr 2fr 1fr;flex:none}.flag i:nth-child(1),.flag i:nth-child(3){background:#aa151b}.flag i:nth-child(2){background:#f1bf00;position:relative}.flag i:nth-child(2):after{content:"🇪🇸";position:absolute;left:8px;top:50%;transform:translateY(-50%);font-size:22px}
+.brand{display:flex;align-items:center;gap:18px;min-width:0}.flag{width:76px;height:50px;border-radius:12px;box-shadow:0 5px 16px #0006;overflow:hidden;display:grid;grid-template-rows:1fr 2fr 1fr;flex:none}.flag i:nth-child(1),.flag i:nth-child(3){background:#aa151b}.flag i:nth-child(2){background:#f1bf00;position:relative}
 .brand h1{font:700 clamp(44px,6vw,72px)/.9 Georgia,"Times New Roman",serif;margin:0;text-shadow:0 3px 14px #0009;letter-spacing:-2px}.brand p{margin:9px 0 0 5px;font-weight:750;text-transform:uppercase;letter-spacing:6px;font-size:12px;text-shadow:0 2px 8px #000}
 .legend{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.legend button{border:1px solid #ffffff24;color:white;background:rgba(7,35,63,.84);backdrop-filter:blur(5px);padding:10px 13px;border-radius:22px;font-size:13px;font-weight:700;white-space:nowrap;cursor:pointer}.legend button:hover,.legend button.active{background:#0d6fe8;border-color:#8bc2ff;transform:translateY(-1px)}
 .days{display:flex;gap:12px;overflow-x:auto;padding:11px clamp(16px,3vw,34px);background:white;box-shadow:0 3px 15px #15324d14;position:sticky;top:0;z-index:1000}.days::-webkit-scrollbar{height:0}.days button{border:1px solid #dbe6f0;background:#f4f8fc;color:#173a62;border-radius:17px;min-width:176px;padding:10px 17px;cursor:pointer;text-align:left;display:flex;align-items:center;gap:12px;transition:.2s}.days button>span:last-child{display:flex;flex-direction:column;gap:4px;min-width:0}.days button:hover{transform:translateY(-1px)}.days button.active{color:white;border-color:transparent;background:linear-gradient(135deg,var(--blue),var(--blue2));box-shadow:0 7px 18px #0d6fe833}.cal{font-size:23px}.date{display:block;font-weight:900;font-size:17px;line-height:1.1;white-space:nowrap}.weekday{display:block;font-size:11px;line-height:1.2;opacity:.9;white-space:nowrap}
@@ -23,7 +23,7 @@
 .marker-pin{width:42px;height:42px;border-radius:50% 50% 50% 7px;transform:rotate(-45deg);background:var(--red);border:3px solid white;box-shadow:0 5px 13px #0005;display:grid;place-items:center;color:#fff;font-weight:900;font-size:15px}.marker-pin span{transform:rotate(45deg)}
 .leaflet-popup-content-wrapper{padding:0!important;border-radius:20px!important;overflow:hidden;box-shadow:0 14px 42px #10243b40!important}.leaflet-popup-content{margin:0!important;width:292px!important}.leaflet-popup-tip{box-shadow:none}.popup-photo{height:150px;width:100%;object-fit:cover;display:block;background:linear-gradient(135deg,#dce8f2,#eef4f8)}.popup-info{padding:16px 17px 15px}.popup-title{display:flex;align-items:center;gap:10px;margin-bottom:8px}.popup-num{width:31px;height:31px;border-radius:50%;display:grid;place-items:center;flex:none;background:var(--red);color:#fff;font-weight:900}.popup-title b{font:700 18px/1.18 Georgia,"Times New Roman",serif;color:#10243b}.popup-info p{margin:0 0 12px;color:#566575;font-size:13px;line-height:1.45}.go{display:block;text-align:center;padding:11px 13px;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--blue2));color:white!important;text-decoration:none;font-weight:850}.photo-fallback{height:150px;display:grid;place-items:center;background:linear-gradient(135deg,#dce8f2,#f5f8fb);font-size:38px}
 .credit{font-size:10px;color:#718096;padding:10px 2px 2px;line-height:1.4}
-@media(max-width:900px){.hero{height:132px}.hero-inner{padding:16px 18px}.flag{width:58px;height:39px}.flag i:nth-child(2):after{font-size:17px;left:5px}.brand{gap:12px}.brand h1{font-size:44px}.brand p{font-size:9px;letter-spacing:3px}.legend{display:none}.days{padding:9px 10px;gap:8px}.days button{min-width:132px;padding:9px 11px}.date{font-size:15px}.weekday{font-size:10px}.cal{font-size:19px}.app{display:flex;flex-direction:column}.mapwrap{order:1}#map{height:53vh;min-height:390px}.sidebar{order:2;max-height:none;overflow:visible;padding:14px}.map-title{top:10px;left:10px}.leaflet-popup-content{width:260px!important}.popup-photo{height:126px}.popup-info{padding:14px 15px}.popup-title b{font-size:17px}}
+@media(max-width:900px){.hero{height:132px;background-position:58% 55%}.hero-inner{padding:16px 18px}.flag{width:58px;height:39px}.brand{gap:12px}.brand h1{font-size:44px}.brand p{font-size:9px;letter-spacing:3px}.legend{display:none}.days{padding:9px 10px;gap:8px}.days button{min-width:132px;padding:9px 11px}.date{font-size:15px}.weekday{font-size:10px}.cal{font-size:19px}.app{display:flex;flex-direction:column}.mapwrap{order:1}#map{height:53vh;min-height:390px}.sidebar{order:2;max-height:none;overflow:visible;padding:14px}.map-title{top:10px;left:10px}.leaflet-popup-content{width:260px!important}.popup-photo{height:126px}.popup-info{padding:14px 15px}.popup-title b{font-size:17px}}
 @media(max-width:520px){.stop{grid-template-columns:42px 58px minmax(0,1fr) 22px;padding:9px 5px}.stop-thumb{width:58px;height:48px}.stop .badge{width:36px;height:36px}.stop .stopname{font-size:13px}.stop .stoptxt{font-size:11px}}
 @media(max-width:420px){.hero{height:118px}.brand h1{font-size:39px}.brand p{letter-spacing:2.2px}.flag{width:51px;height:35px;border-radius:9px}.days button{min-width:123px}.leaflet-popup-content{width:242px!important}.popup-photo{height:115px}}
 </style>
@@ -36,7 +36,8 @@
 <script>
 const hotel={name:"ibis Barcelona Santa Coloma",lat:41.455661,lng:2.204926};
 const IMG={
-airport:"https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Barcelona_El_Prat_Airport_T1.jpg/800px-Barcelona_El_Prat_Airport_T1.jpg",
+hotel:"https://ik.imagekit.io/etg/hb/22/228426/228426a_hb_a_029.jpg?tr=f-auto,q-80,fo-auto,w-900,h-560",
+airport:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Barcelona-T1-exterior.jpg?width=1000",
 parkguell:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Hauptportal%20des%20Parc%20G%C3%BCell.jpg?width=900",
 vicens:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Casa%20Vicens%20in%20Barcelona%202026.jpg?width=900",
 sagrada:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Sagrada%20Fam%C3%ADlia.%20Fa%C3%A7ana%20del%20Naixement.jpg?width=900",
@@ -54,7 +55,7 @@ montjuic:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Barcelona%20-
 const days=[
 {id:1,date:"19 Out",weekday:"Segunda-feira",title:"✈️ Chegada a Barcelona",description:"Chegada prevista por volta das 21:00. Deslocação para Santa Coloma de Gramenet e check-in.",points:[
 {n:1,name:"Aeroporto Barcelona–El Prat",lat:41.2974,lng:2.0833,d:"Chegada a Barcelona e início da deslocação para o hotel.",img:IMG.airport},
-{n:2,name:"ibis Barcelona Santa Coloma",lat:41.455661,lng:2.204926,d:"Hotel e base da viagem.",img:""}]},
+{n:2,name:"ibis Barcelona Santa Coloma",lat:41.455661,lng:2.204926,d:"Hotel e base da viagem.",img:IMG.hotel}]},
 {id:2,date:"20 Out",weekday:"Terça-feira",title:"🏛️ Gaudí + Sagrada Família",description:"Dia organizado por proximidade, começando em Gràcia e terminando na Sagrada Família.",points:[
 {n:3,name:"Park Güell",lat:41.4145,lng:2.1527,d:"Parque de Gaudí e um dos locais mais emblemáticos de Barcelona.",img:IMG.parkguell},
 {n:4,name:"Casa Vicens",lat:41.4035,lng:2.1506,d:"Uma das primeiras grandes obras de Antoni Gaudí.",img:IMG.vicens},
@@ -72,7 +73,7 @@ const days=[
 {n:14,name:"Casa Batlló",lat:41.3917,lng:2.1649,d:"Uma das obras mais reconhecíveis de Gaudí.",img:IMG.batllo},
 {n:15,name:"Montjuïc",lat:41.3636,lng:2.1585,d:"Zona elevada com jardins, miradouros e equipamentos culturais.",img:IMG.montjuic}]},
 {id:5,date:"23 Out",weekday:"Sexta-feira",title:"✈️ Regresso",description:"Voo às 12:00. Manhã reservada à saída do hotel e deslocação para o aeroporto.",points:[
-{n:16,name:"ibis Barcelona Santa Coloma",lat:41.455661,lng:2.204926,d:"Saída do hotel com antecedência.",img:""},
+{n:16,name:"ibis Barcelona Santa Coloma",lat:41.455661,lng:2.204926,d:"Saída do hotel com antecedência.",img:IMG.hotel},
 {n:17,name:"Aeroporto Barcelona–El Prat",lat:41.2974,lng:2.0833,d:"Destino final do roteiro.",img:IMG.airport}]}
 ];
 const map=L.map("map",{zoomControl:true}).setView([41.39,2.17],12);
@@ -85,7 +86,7 @@ function popup(p){return `${safeImg(p)}<div class="popup-info"><div class="popup
 function clearMap(){markers.forEach(m=>map.removeLayer(m));markers=[];if(route){map.removeLayer(route);route=null}}
 function clearTopActive(){document.querySelectorAll('.legend button').forEach(b=>b.classList.remove('active'))}
 function focusSpecial(kind){clearTopActive();clearMap();document.querySelectorAll('.stop').forEach(x=>x.classList.remove('selected'));
- if(kind==='hotel'){document.getElementById('hotelBtn').classList.add('active');const p={n:'🏨',name:hotel.name,lat:hotel.lat,lng:hotel.lng,d:'Hotel e base da viagem em Santa Coloma de Gramenet.',img:''};const m=L.marker([p.lat,p.lng],{icon:pin('H')}).addTo(map).bindPopup(popup(p));markers=[m];map.flyTo([p.lat,p.lng],15,{duration:.6});setTimeout(()=>m.openPopup(),350);}
+ if(kind==='hotel'){document.getElementById('hotelBtn').classList.add('active');const p={n:'🏨',name:hotel.name,lat:hotel.lat,lng:hotel.lng,d:'Hotel e base da viagem em Santa Coloma de Gramenet.',img:IMG.hotel};const m=L.marker([p.lat,p.lng],{icon:pin('H')}).addTo(map).bindPopup(popup(p));markers=[m];map.flyTo([p.lat,p.lng],15,{duration:.6});setTimeout(()=>m.openPopup(),350);}
  if(kind==='airport'){document.getElementById('airportBtn').classList.add('active');const p={n:'✈',name:'Aeroporto Barcelona–El Prat',lat:41.2974,lng:2.0833,d:'Aeroporto de chegada e partida da viagem.',img:IMG.airport};const m=L.marker([p.lat,p.lng],{icon:pin('✈')}).addTo(map).bindPopup(popup(p));markers=[m];map.flyTo([p.lat,p.lng],14,{duration:.6});setTimeout(()=>m.openPopup(),350);}
  if(kind==='visits'){document.getElementById('visitsBtn').classList.add('active');const pts=days.filter(d=>d.id>=2&&d.id<=4).flatMap(d=>d.points);const coords=[];pts.forEach(p=>{const m=L.marker([p.lat,p.lng],{icon:pin(p.n)}).addTo(map).bindPopup(popup(p),{maxWidth:292});markers.push(m);coords.push([p.lat,p.lng])});map.fitBounds(L.latLngBounds(coords),{padding:[55,55],maxZoom:13});}
 }
